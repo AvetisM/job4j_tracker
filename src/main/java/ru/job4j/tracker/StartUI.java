@@ -16,5 +16,7 @@ public class StartUI {
         if (foundItem != null) {
             System.out.println("Id " + foundItem.getId() + " name " + foundItem.getName());
         }
+
+        System.out.println(firstItem.toString());
     }
 }

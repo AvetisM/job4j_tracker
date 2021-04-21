@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -39,5 +40,14 @@ public class Item {
 
     public LocalDateTime getCreate() {
         return create;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", create=" + create
+                + '}';
     }
 }
