@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
+import static java.lang.System.arraycopy;
+
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;
@@ -20,6 +22,18 @@ public class Tracker {
         } else {
             item.setId(id);
             items[i] = item;
+            return true;
+        }
+    }
+
+    public boolean delete(int id) {
+        int i = indexOf(id);
+        if (i == -1) {
+            return false;
+        } else {
+            arraycopy(items, i + 1, items, i, size - i);
+            items[size - 1] = null;
+            size--;
             return true;
         }
     }
