@@ -5,9 +5,16 @@ import java.time.format.DateTimeFormatter;
 
 public class StartUI {
     public static void main(String[] args) {
-        Item item = new Item();
-        LocalDateTime itemDate = item.getCreate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-        System.out.println("Дата создания item: " + itemDate.format(formatter));
+        Tracker tracker = new Tracker();
+        Item firstItem = new Item("First");
+        tracker.add(firstItem);
+
+        Item secondItem = new Item("Second");
+        tracker.add(secondItem);
+
+        Item foundItem = tracker.findById(secondItem.getId());
+        if (foundItem != null) {
+            System.out.println("Id " + foundItem.getId() + " name " + foundItem.getName());
+        }
     }
 }

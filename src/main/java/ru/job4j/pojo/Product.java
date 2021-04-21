@@ -11,6 +11,7 @@ public class Product {
         this.count = count;
     }
 
+    @SuppressWarnings("CheckStyle")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
