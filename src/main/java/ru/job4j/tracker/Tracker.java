@@ -16,26 +16,24 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        int i = indexOf(id);
-        if (i == -1) {
-            return false;
-        } else {
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
             item.setId(id);
-            items[i] = item;
-            return true;
+            items[index] = item;
         }
+        return rsl;
     }
 
     public boolean delete(int id) {
-        int i = indexOf(id);
-        if (i == -1) {
-            return false;
-        } else {
-            arraycopy(items, i + 1, items, i, size - i);
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
+            arraycopy(items, index + 1, items, index, size - index);
             items[size - 1] = null;
             size--;
-            return true;
         }
+        return rsl;
     }
 
     private int indexOf(int id) {
