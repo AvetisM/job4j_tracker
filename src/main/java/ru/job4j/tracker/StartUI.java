@@ -42,7 +42,7 @@ public class StartUI {
         Item[] items = tracker.findAll();
         System.out.println("=== All items ====");
         for (Item item : items) {
-            System.out.println(item.toString());
+            System.out.println(item);
         }
     }
 
@@ -55,7 +55,6 @@ public class StartUI {
         String name = scanner.nextLine();
 
         Item item = new Item(name);
-        tracker.add(item);
 
         if (tracker.replace(id, item)) {
             System.out.println("Success. Item changed");
@@ -83,7 +82,7 @@ public class StartUI {
         Item item = tracker.findById(id);
 
         if (item != null) {
-            System.out.println(item.toString());
+            System.out.println(item);
         } else {
             System.out.println("Item with id " + id + " not found");
         }
@@ -96,9 +95,7 @@ public class StartUI {
 
         if (items.length > 0) {
             for (Item item : items) {
-                if (item != null) {
-                    System.out.println(item.toString());
-                }
+                    System.out.println(item);
             }
         } else {
             System.out.println("Items with name " + name + " not found");
