@@ -36,10 +36,20 @@ public class StartUI {
                 Item item = new Item(name);
                 tracker.replace(id, item);
                 System.out.println("Заявка изменена успешно.");
+            } else if (select == 3) {
+                System.out.println("=== Delete item ====");
+                System.out.print("Enter id: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                if (tracker.delete(id)) {
+                    System.out.println("Заявка удалена успешно.");
+                } else {
+                    System.out.println("Ошибка удаления заявки.");
+                }
             } else {
                 run = false;
             }
         }
+
     }
 
     private void showMenu() {
