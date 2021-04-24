@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class StartUI {
@@ -34,8 +35,11 @@ public class StartUI {
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
-                tracker.replace(id, item);
-                System.out.println("Заявка изменена успешно.");
+                if (tracker.replace(id, item)) {
+                    System.out.println("Заявка изменена успешно.");
+                } else {
+                    System.out.println("Ошибка замены заявки.");
+                }
             } else if (select == 3) {
                 System.out.println("=== Delete item ====");
                 System.out.print("Enter id: ");
