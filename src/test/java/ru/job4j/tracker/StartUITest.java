@@ -1,9 +1,6 @@
 package ru.job4j.tracker;
 
-<<<<<<< HEAD
-=======
 import org.junit.Assert;
->>>>>>> c94d5c3 (5.1. Тестирование. Подготовка данных. [#502941])
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -20,8 +17,6 @@ public class StartUITest {
      Item expected = new Item("Fix PC");
      assertThat(created.getName(), is(expected.getName()));
     }
-<<<<<<< HEAD
-=======
 
     @Test
     public void whenReplaceItem() {
@@ -49,5 +44,4 @@ public class StartUITest {
         Item deleted = tracker.findById(item.getId());
         Assert.assertNull(deleted);
     }
->>>>>>> c94d5c3 (5.1. Тестирование. Подготовка данных. [#502941])
 }
