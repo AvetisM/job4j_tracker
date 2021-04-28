@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Item {
@@ -44,10 +46,11 @@ public class Item {
 
     @Override
     public String toString() {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd MM yy");
         return "Item{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", create=" + create
+                + ", create=" + df.format(create)
                 + '}';
     }
 }

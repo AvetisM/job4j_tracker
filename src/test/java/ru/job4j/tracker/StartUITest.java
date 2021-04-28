@@ -21,7 +21,7 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(out.toString(), is("Menu:\r\n0. Add new Item\r\n1. Exit Program\r\n=== Create a new Item ====\r\nДобавленная заявка: Item{id=1, name='Item name', create=28 04 21}\r\nMenu:\r\n0. Add new Item\r\n1. Exit Program\r\n"));
     }
 
     @Test
