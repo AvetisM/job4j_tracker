@@ -20,7 +20,7 @@ public class StartUITest {
                 new CreateAction(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
@@ -37,7 +37,7 @@ public class StartUITest {
                 new ReplaceItem(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
@@ -53,7 +53,7 @@ public class StartUITest {
                 new DeleteItem(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
@@ -70,7 +70,7 @@ public class StartUITest {
                 new ShowAllItems(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         Assert.assertArrayEquals(tracker.findAll(), items);
     }
 
@@ -86,7 +86,7 @@ public class StartUITest {
                 new FindItemById(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(item.getName()));
     }
 
@@ -103,7 +103,7 @@ public class StartUITest {
                 new FindItemByName(out),
                 new ExitProgram()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         Assert.assertArrayEquals(tracker.findByName(item.getName()), items);
     }
 
