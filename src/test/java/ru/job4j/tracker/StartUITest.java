@@ -8,14 +8,16 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-    /*@Test
+    @Test
     public void whenCreateItem() {
         Input in = new StubInput(
                 new String[] {"0", "Item name", "1"}
         );
+        Output out = new StubOutput();
+
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
+                new CreateAction(out),
                 new ExitProgram()
         };
         new StartUI().init(in, tracker, actions);
@@ -30,8 +32,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", Integer.toString(item.getId()), replacedName, "1"}
         );
+        Output out = new StubOutput();
         UserAction[] actions = {
-                new ReplaceItem(),
+                new ReplaceItem(out),
                 new ExitProgram()
         };
         new StartUI().init(in, tracker, actions);
@@ -45,11 +48,63 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", Integer.toString(item.getId()), "1"}
         );
+        Output out = new StubOutput();
         UserAction[] actions = {
-                new DeleteItem(),
+                new DeleteItem(out),
                 new ExitProgram()
         };
         new StartUI().init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
-    }*/
+    }
+
+    @Test
+    public void whenShowAllItems() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New item"));
+        Item[] items = {item};
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        Output out = new StubOutput();
+        UserAction[] actions = {
+                new ShowAllItems(out),
+                new ExitProgram()
+        };
+        new StartUI().init(in, tracker, actions);
+        Assert.assertArrayEquals(tracker.findAll(), items);
+    }
+
+    @Test
+    public void whenFindItemById() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New item"));
+        Input in = new StubInput(
+                new String[] {"0", Integer.toString(item.getId()), "1"}
+        );
+        Output out = new StubOutput();
+        UserAction[] actions = {
+                new FindItemById(out),
+                new ExitProgram()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()).getName(), is(item.getName()));
+    }
+
+    @Test
+    public void whenFindItemByName() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New item"));
+        Item[] items = {item};
+        Input in = new StubInput(
+                new String[] {"0", item.getName(), "1"}
+        );
+        Output out = new StubOutput();
+        UserAction[] actions = {
+                new FindItemByName(out),
+                new ExitProgram()
+        };
+        new StartUI().init(in, tracker, actions);
+        Assert.assertArrayEquals(tracker.findByName(item.getName()), items);
+    }
+
 }
