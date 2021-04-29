@@ -9,8 +9,9 @@ import static org.junit.Assert.*;
 public class StartUITest {
     @Test
     public void whenCreateItem() {
+        Item item = new Item("Item name");
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[] {"0", item.getName(), "1"}
         );
         Output out = new StubOutput();
 
@@ -20,14 +21,7 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu:\r\n"
-                + "0. Add new Item\r\n"
-                + "1. Exit Program\r\n"
-                + "=== Create a new Item ====\r\n"
-                + "Добавленная заявка: Item{id=1, name='Item name'}\r\n"
-                + "Menu:\r\n"
-                + "0. Add new Item\r\n"
-                + "1. Exit Program\r\n"));
+        assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
@@ -65,8 +59,9 @@ public class StartUITest {
 
     @Test
     public void whenShowAllItems() {
+        Item item = new Item("New item");
         Tracker tracker = new Tracker();
-        tracker.add(new Item("New item"));
+        tracker.add(item);
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
@@ -80,7 +75,7 @@ public class StartUITest {
                 + "0. Show all items\r\n"
                 + "1. Exit Program\r\n"
                 + "=== Show all items ===\r\n"
-                + "Item{id=1, name='New item'}\r\n"
+                + item + "\r\n"
                 + "Menu:\r\n"
                 + "0. Show all items\r\n"
                 + "1. Exit Program\r\n"));
@@ -103,7 +98,7 @@ public class StartUITest {
                 + "0. Find item by id\r\n"
                 + "1. Exit Program\r\n"
                 + "=== Find item by id ====\r\n"
-                + "Item{id=1, name='New item'}\r\n"
+                + item + "\r\n"
                 + "Menu:\r\n"
                 + "0. Find item by id\r\n"
                 + "1. Exit Program\r\n"));
@@ -126,10 +121,9 @@ public class StartUITest {
                 + "0. Find items by name\r\n"
                 + "1. Exit Program\r\n"
                 + "=== Find items by name ====\r\n"
-                + "Item{id=1, name='New item'}\r\n"
+                + item + "\r\n"
                 + "Menu:\r\n"
                 + "0. Find items by name\r\n"
                 + "1. Exit Program\r\n"));
     }
-
 }
