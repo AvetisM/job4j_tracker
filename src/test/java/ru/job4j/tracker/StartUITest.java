@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -21,7 +20,14 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu:\r\n0. Add new Item\r\n1. Exit Program\r\n=== Create a new Item ====\r\nДобавленная заявка: Item{id=1, name='Item name', create=28 04 21}\r\nMenu:\r\n0. Add new Item\r\n1. Exit Program\r\n"));
+        assertThat(out.toString(), is("Menu:\r\n"
+                + "0. Add new Item\r\n"
+                + "1. Exit Program\r\n"
+                + "=== Create a new Item ====\r\n"
+                + "Добавленная заявка: Item{id=1, name='Item name'}\r\n"
+                + "Menu:\r\n"
+                + "0. Add new Item\r\n"
+                + "1. Exit Program\r\n"));
     }
 
     @Test
@@ -60,10 +66,9 @@ public class StartUITest {
     @Test
     public void whenShowAllItems() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("New item"));
-        Item[] items = {item};
+        tracker.add(new Item("New item"));
         Input in = new StubInput(
-                new String[] {"0", "1"}
+                new String[]{"0", "1"}
         );
         Output out = new StubOutput();
         UserAction[] actions = {
@@ -71,7 +76,14 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        Assert.assertArrayEquals(tracker.findAll(), items);
+        assertThat(out.toString(), is("Menu:\r\n"
+                + "0. Show all items\r\n"
+                + "1. Exit Program\r\n"
+                + "=== Show all items ===\r\n"
+                + "Item{id=1, name='New item'}\r\n"
+                + "Menu:\r\n"
+                + "0. Show all items\r\n"
+                + "1. Exit Program\r\n"));
     }
 
     @Test
@@ -87,14 +99,20 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is(item.getName()));
+        assertThat(out.toString(), is("Menu:\r\n"
+                + "0. Find item by id\r\n"
+                + "1. Exit Program\r\n"
+                + "=== Find item by id ====\r\n"
+                + "Item{id=1, name='New item'}\r\n"
+                + "Menu:\r\n"
+                + "0. Find item by id\r\n"
+                + "1. Exit Program\r\n"));
     }
 
     @Test
     public void whenFindItemByName() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("New item"));
-        Item[] items = {item};
         Input in = new StubInput(
                 new String[] {"0", item.getName(), "1"}
         );
@@ -104,7 +122,14 @@ public class StartUITest {
                 new ExitProgram()
         };
         new StartUI(out).init(in, tracker, actions);
-        Assert.assertArrayEquals(tracker.findByName(item.getName()), items);
+        assertThat(out.toString(), is("Menu:\r\n"
+                + "0. Find items by name\r\n"
+                + "1. Exit Program\r\n"
+                + "=== Find items by name ====\r\n"
+                + "Item{id=1, name='New item'}\r\n"
+                + "Menu:\r\n"
+                + "0. Find items by name\r\n"
+                + "1. Exit Program\r\n"));
     }
 
 }
