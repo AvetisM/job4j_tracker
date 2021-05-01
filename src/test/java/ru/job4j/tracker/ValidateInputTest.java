@@ -29,7 +29,7 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void  whenInvalid() {
+    public void  whenNegative() {
         Output output = new StubOutput();
         Input in = new StubInput(
                 new String[] {"-3"}
@@ -48,5 +48,7 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Menu:");
         assertThat(selected, is(1));
+        selected = input.askInt("Menu:");
+        assertThat(selected, is(2));
     }
 }
