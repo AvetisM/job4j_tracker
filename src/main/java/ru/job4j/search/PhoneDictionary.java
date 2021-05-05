@@ -13,7 +13,6 @@ public class PhoneDictionary {
         ArrayList<Person> result = new ArrayList<>();
 
         for (Person person:persons) {
-
             if (person.getName().contains(key) || person.getSurname().contains(key)
                 || person.getPhone().contains(key) || person.getAddress().contains(key)) {
                 result.add(person);
