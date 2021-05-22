@@ -15,7 +15,7 @@ public class JobTest {
 
         Comparator<Job> cmpNameInc = new JobIncByName();
         int rsl = cmpNameInc.compare(new Job("Impl task", 1),
-                                     new Job("Fix bug", 0)
+                new Job("Fix bug", 0)
         );
         assertThat(rsl, greaterThan(0));
     }
