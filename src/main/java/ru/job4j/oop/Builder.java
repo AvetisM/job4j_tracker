@@ -9,7 +9,8 @@ public class Builder extends Engineer {
 
     }
 
-    public Builder(String name, String surname, String education, Date birthday, String lastProject, String typeOfBuilding) {
+    public Builder(String name, String surname, String education,
+                   Date birthday, String lastProject, String typeOfBuilding) {
         super(name, surname, education, birthday, lastProject);
         this.typeOfBuilding = typeOfBuilding;
     }

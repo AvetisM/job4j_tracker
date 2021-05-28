@@ -9,7 +9,8 @@ public class Dentist extends Doctor {
 
     }
 
-    public Dentist(String name, String surname, String education, Date birthday, Diagnosis diagnosis, boolean adult) {
+    public Dentist(String name, String surname, String education,
+                   Date birthday, Diagnosis diagnosis, boolean adult) {
         super(name, surname, education, birthday, diagnosis);
         this.adult = adult;
     }

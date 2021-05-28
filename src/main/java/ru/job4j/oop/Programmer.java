@@ -9,7 +9,8 @@ public class Programmer extends Engineer {
 
     }
 
-    public Programmer(String name, String surname, String education, Date birthday, String lastProject, String programmingLanguage) {
+    public Programmer(String name, String surname, String education,
+                      Date birthday, String lastProject, String programmingLanguage) {
         super(name, surname, education, birthday, lastProject);
         this.programmingLanguage = programmingLanguage;
     }

@@ -14,8 +14,12 @@ public class Product {
     @SuppressWarnings("CheckStyle")
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Product product = (Product) o;
         return count == product.count && name.equals(product.name);
     }
