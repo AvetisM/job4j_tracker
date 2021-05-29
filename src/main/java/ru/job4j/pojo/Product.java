@@ -11,7 +11,6 @@ public class Product {
         this.count = count;
     }
 
-    @SuppressWarnings("CheckStyle")
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -37,11 +36,4 @@ public class Product {
         this.name = name;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 }
