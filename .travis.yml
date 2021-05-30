@@ -3,8 +3,6 @@ language: java
 jdk:
   - openjdk16
 
-os: "windows"
-
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
