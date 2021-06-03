@@ -12,10 +12,17 @@ public class MagicBall {
     }
 
     public static String getAnswer(int answer) {
-        return switch (answer) {
-            case 0 -> "Да";
-            case 1 -> "Нет";
-            default -> "Может быть";
-        };
+        String answerSting;
+        switch (answer) {
+            case 0:
+                answerSting = "Да";
+                break;
+            case 1:
+                answerSting = "Нет";
+                break;
+            default:
+                answerSting = "Может быть";
+        }
+        return answerSting;
     }
 }
