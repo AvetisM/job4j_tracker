@@ -15,16 +15,6 @@ public class DepDescComp implements Comparator<String> {
             return res;
         }
 
-        int length = Math.max(o1Array.length, o2Array.length);
-
-        for (int i = 1; i < length; i++) {
-            String val1 = o1Array.length - 1 < i ? " " : o1Array[i];
-            String val2 = o2Array.length - 1 < i ? " " : o2Array[i];
-            res = val1.compareTo(val2);
-            if (res != 0) {
-                break;
-            }
-        }
-        return res;
+        return o1.compareTo(o2);
     }
 }
