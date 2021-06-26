@@ -24,5 +24,6 @@ public class LambdaUsage {
         };
 
         list.sort(cmpDescSize);
+
     }
 }
