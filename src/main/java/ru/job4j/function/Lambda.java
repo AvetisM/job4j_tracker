@@ -18,7 +18,8 @@ public class Lambda {
                   System.out.println(s);
         }
 
-        Comparator<String> cmpDescSize = (left, right) -> right.length() - left.length();
+        Comparator<String> cmpDescSize = (left, right) ->
+                                          Integer.compare(right.length(), left.length());
 
         list.sort(cmpDescSize);
         for (String s : list) {
