@@ -16,7 +16,7 @@ public class FunctionCalculatorTest {
         FunctionCalculator calc = new FunctionCalculator();
 
         List<Double> result = calc.diapason(5, 8, x -> 2 * x + 1);
-        List<Double> expected = Arrays.asList(11D, 13D, 15D);
+        List<Double> expected = Arrays.asList(11D, 13D, 15D, 17D);
         assertThat(result, is(expected));
     }
 
@@ -26,7 +26,7 @@ public class FunctionCalculatorTest {
         FunctionCalculator calc = new FunctionCalculator();
 
         List<Double> result = calc.diapason(5, 8, x -> x * x);
-        List<Double> expected = Arrays.asList(25D, 36D, 49D);
+        List<Double> expected = Arrays.asList(25D, 36D, 49D, 64D);
         assertThat(result, is(expected));
     }
 
@@ -36,7 +36,7 @@ public class FunctionCalculatorTest {
         FunctionCalculator calc = new FunctionCalculator();
 
         List<Double> result = calc.diapason(5, 8, x -> Math.pow(5, x));
-        List<Double> expected = Arrays.asList(3125D, 15625D, 78125D);
+        List<Double> expected = Arrays.asList(3125D, 15625D, 78125D, 390625D);
         assertThat(result, is(expected));
     }
 }
