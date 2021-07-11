@@ -20,7 +20,7 @@ public class School {
                  Collectors.toMap(
                          Student::getSurname,
                          student -> student,
-                         (first, second) -> first.equals(second) ? first : second
+                         (first, second) -> first
                  ));
     }
 }
