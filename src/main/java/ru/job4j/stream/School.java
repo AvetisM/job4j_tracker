@@ -16,10 +16,11 @@ public class School {
     }
 
     public Map<String, Student> studentListToMap(List<Student> students) {
-        return students.stream().distinct().collect(
+        return students.stream().collect(
                  Collectors.toMap(
                          Student::getSurname,
-                         student -> student
+                         student -> student,
+                         (first, second) -> first.equals(second) ? first : second
                  ));
     }
 }
