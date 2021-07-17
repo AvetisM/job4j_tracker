@@ -2,14 +2,14 @@ package ru.job4j.oop;
 
 import java.util.Date;
 
-public class Builder extends Engineer {
+public class Builder1 extends Engineer {
     private String typeOfBuilding;
 
-    public Builder() {
+    public Builder1() {
 
     }
 
-    public Builder(String name, String surname, String education,
+    public Builder1(String name, String surname, String education,
                    Date birthday, String lastProject, String typeOfBuilding) {
         super(name, surname, education, birthday, lastProject);
         this.typeOfBuilding = typeOfBuilding;
