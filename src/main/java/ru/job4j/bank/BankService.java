@@ -61,13 +61,13 @@ public class BankService {
      * @param requisite реквизиты для поиска счета из списка счетов клиента
      * @return возвращает найденный счет клиента или null если счет не найден
      */
-    public Account findByRequisite(String passport, String requisite) {
+    public Optional<Account> findByRequisite(String passport, String requisite) {
 
         Optional<User> user = findByPassport(passport);
 
-        return user.map(value -> users.get(value).stream()
+        return user.flatMap(value -> users.get(value).stream()
                 .filter(s -> requisite.equals(s.getRequisite()))
-                .findFirst().get()).orElse(null);
+                .findFirst());
     }
 
     /**
@@ -83,14 +83,14 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
 
-        Account sourceAccount = findByRequisite(srcPassport, srcRequisite);
-        Account destAccount = findByRequisite(destPassport, destRequisite);
+        Optional<Account> sourceAccount = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
 
-        if (sourceAccount != null
-                && destAccount != null
-                && sourceAccount.getBalance() >= amount) {
-            sourceAccount.setBalance(sourceAccount.getBalance() - amount);
-            destAccount.setBalance(destAccount.getBalance() + amount);
+        if (sourceAccount.isPresent()
+                && destAccount.isPresent()
+                && sourceAccount.get().getBalance() >= amount) {
+            sourceAccount.get().setBalance(sourceAccount.get().getBalance() - amount);
+            destAccount.get().setBalance(destAccount.get().getBalance() + amount);
             return true;
         } else {
             return false;
