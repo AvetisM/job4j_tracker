@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class StartUI {
     private final Output out;
@@ -33,6 +38,7 @@ public class StartUI {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
+
         try (SqlTracker tracker = new SqlTracker()) {
             tracker.init();
             UserAction[] actions = {
