@@ -1,5 +1,6 @@
 package ru.job4j.tracker.store;
 
+import org.hamcrest.core.IsNull;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -12,11 +13,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
@@ -61,4 +60,48 @@ public class SqlTrackerTest {
         assertThat(tracker.findById(item.getId()), is(item));
     }
 
+    @Test
+    public void whenReplaceItem() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item itemFirst = new Item("itemFirst");
+        Item itemSecond = new Item("itemSecond");
+        tracker.add(itemFirst);
+        int id = itemFirst.getId();
+        tracker.replace(id, itemSecond);
+        assertThat(tracker.findById(id).getName(), is("itemSecond"));
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("itemDelete");
+        tracker.add(item);
+        int id = item.getId();
+        tracker.delete(id);
+        assertThat(tracker.findById(item.getId()), is(IsNull.nullValue()));
+    }
+
+    @Test
+    public void whenSaveItemAndFindName() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("itemTest");
+        tracker.add(item);
+        Item item1 = new Item("itemTest1");
+        tracker.add(item1);
+        Item item2 = new Item("itemTest2");
+        tracker.add(item2);
+        assertThat(tracker.findByName(item.getName()).get(0), is(item));
+    }
+
+    @Test
+    public void whenSaveItemAndFindAll() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("itemTest");
+        tracker.add(item);
+        Item item1 = new Item("itemTest1");
+        tracker.add(item1);
+        Item item2 = new Item("itemTest2");
+        tracker.add(item2);
+        assertThat(tracker.findAll().size(), is(3));
+    }
 }
