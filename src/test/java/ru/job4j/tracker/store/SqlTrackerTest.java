@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
@@ -84,24 +85,18 @@ public class SqlTrackerTest {
     @Test
     public void whenSaveItemAndFindName() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item = new Item("itemTest");
-        tracker.add(item);
-        Item item1 = new Item("itemTest1");
-        tracker.add(item1);
-        Item item2 = new Item("itemTest2");
-        tracker.add(item2);
-        assertThat(tracker.findByName(item.getName()).get(0), is(item));
+        Item item = tracker.add(new Item("itemTest"));
+        tracker.add(new Item("itemTest1"));
+        tracker.add(new Item("itemTest2"));
+        assertThat(tracker.findByName("itemTest"), is(List.of(item)));
     }
 
     @Test
     public void whenSaveItemAndFindAll() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item = new Item("itemTest");
-        tracker.add(item);
-        Item item1 = new Item("itemTest1");
-        tracker.add(item1);
-        Item item2 = new Item("itemTest2");
-        tracker.add(item2);
-        assertThat(tracker.findAll().size(), is(3));
+        Item item = tracker.add(new Item("itemTest"));
+        Item item1 = tracker.add(new Item("itemTest1"));
+        Item item2 = tracker.add(new Item("itemTest2"));
+        assertThat(tracker.findAll(), is(List.of(item, item1, item2)));
     }
 }
