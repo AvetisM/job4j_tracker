@@ -57,25 +57,11 @@ public class StartUI {
         }*/
 
         MemTracker memTracker = new MemTracker();
-        for (int i = 0; i < 170; i++) {
-            memTracker.add(new Item("Name" + i));
-        }
-        List<Item> items = memTracker.findAll();
-        if (items.size() > 0) {
-            for (Item item : items) {
-                System.out.println(item);
-            }
-        } else {
-            System.out.println("Хранилище еще не содержит заявок");
-        }
-        for (int i = 0; i < 50; i++) {
-            memTracker.delete(i);
-        }
         UserAction[] actions = {
-                new CreateAction(output),
+                new CreateActionMultipleCreation(output),
                 new ShowAllItems(output),
                 new ReplaceItem(output),
-                new DeleteItem(output),
+                new DeleteItemMultipleDeletion(output),
                 new FindItemById(output),
                 new FindItemByName(output),
                 new ExitProgram()
