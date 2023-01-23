@@ -4,14 +4,14 @@ import lombok.*;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
+@Getter
+@Setter
 public class Category {
     @NonNull
-    @Getter
-    @Setter
     @EqualsAndHashCode.Include
     private int id;
-    @Getter
-    @Setter
+
     private String name;
+
 }
 
