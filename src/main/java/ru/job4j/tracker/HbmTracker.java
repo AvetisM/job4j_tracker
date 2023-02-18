@@ -7,13 +7,12 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
 
     private static final String REPLACE_ITEM =
-            "UPDATE items SET name = :fName, created = :fCreated WHERE id = :fId";
+            "UPDATE Item SET name = :fName, created = :fCreated WHERE id = :fId";
     private static final String DELETE_ITEM = "DELETE Item WHERE id = :fId";
     private static final String FIND_ALL_ITEMS = "FROM Item";
     private static final String FIND_ITEM_BY_NAME = "FROM Item as i WHERE i.name like :fName";
@@ -46,7 +45,7 @@ public class HbmTracker implements Store, AutoCloseable {
             session.createQuery(REPLACE_ITEM)
                     .setParameter("fId", id)
                     .setParameter("fName", item.getName())
-                    .setParameter("fCreated", Timestamp.valueOf(item.getCreated()))
+                    .setParameter("fCreated", item.getCreated())
                     .executeUpdate();
             session.getTransaction().commit();
             rls = true;
